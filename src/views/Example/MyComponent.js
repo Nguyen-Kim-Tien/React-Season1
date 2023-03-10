@@ -7,7 +7,9 @@ const handleChangeName = (e) => {
 
 2. Sử dụng onChange = {(event)=>this.handleChangeName(event)} thì khi viết phương thức handleChangeName có thể viết theo arrow function hoặc hàm bình thường
 
-3. Tham số truyền vào có thể là tên bất kì, nhưng để lấy giá trị hiện tại thẻ input thì cần câu lệnh 
+3. Sử dụng onChange = {(a) => this.setState({name:a.target.value})}
+
+4. Tham số truyền vào có thể là tên bất kì, nhưng để lấy giá trị hiện tại thẻ input thì cần câu lệnh 
 <tham số>.target.value
 
 */
@@ -19,6 +21,7 @@ class MyComponent extends React.Component {
     name: "Tiến",
     university: "HCMUT",
     framework: "React JS",
+    address: "HCM city",
   };
 
   handleOnChangeName(e) {
@@ -65,6 +68,14 @@ class MyComponent extends React.Component {
             type="text"
             value={this.state.framework}
             onChange={(a) => this.handleOnChangeFrameWork(a)}
+          />
+          <br />
+          <label>Address: {this.state.address}</label>
+          <br />
+          <input
+            type="text"
+            value={this.state.address}
+            onChange={(a) => this.setState({ address: a.target.value })}
           />
         </form>
       </>
