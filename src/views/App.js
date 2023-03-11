@@ -1,11 +1,11 @@
 import "./App.scss";
-import MyComponent from "./Example/MyComponent.js";
+import ComponentParent from "./Example/ComponentParent";
 
 const App = () => {
   return (
     <div>
       <header className="App-header">
-        <MyComponent />
+        <ComponentParent />
       </header>
     </div>
   );
