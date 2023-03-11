@@ -1,6 +1,7 @@
 /*
-1. Chú ý khai báo state để dùng hàm map truyền props vào
-2. Hàm ...map((item)=>(JSX)): chú ý dấu ngoặc trong hay nhọn
+Làm ẩn, hiện thông tin
+
+1. Trạng thái state của biến kiểm tra điều kiện là true hoặc false chứ không phải "true" hay "false"
 
 */
 
@@ -12,18 +13,40 @@ class MyComponent extends React.Component {
     user: [
       { name: "Nguyễn Văn An", age: "26", framework: "ReactJS" },
       { name: "Hà Huy Hiệu", age: "21", framework: "NodeJS" },
+      { name: "Nguyễn Thị Linh", age: "23", framework: "Lavarel" },
     ],
+    isShowHide: false,
   };
+
+  handleShowHide = () => {
+    this.setState({
+      isShowHide: !this.state.isShowHide,
+    });
+  };
+
   render() {
     return (
       <>
-        {this.state.user.map((item) => (
-          <ComponentChild
-            name={item["name"]}
-            age={item.age}
-            framework={item.framework}
-          />
-        ))}
+        {this.state.isShowHide === false ? (
+          <>
+            <div>
+              <button onClick={() => this.handleShowHide()}>Show</button>
+            </div>
+          </>
+        ) : (
+          <>
+            {this.state.user.map((item) => (
+              <ComponentChild
+                name={item["name"]}
+                age={item.age}
+                framework={item.framework}
+              />
+            ))}
+            <div>
+              <button onClick={() => this.handleShowHide()}>Hide</button>
+            </div>
+          </>
+        )}
       </>
     );
   }
