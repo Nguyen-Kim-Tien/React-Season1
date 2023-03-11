@@ -1,4 +1,7 @@
 /*
+Có 1 form: name, university, framework, address
+Nhấn submit1 hoặc submit2 sẽ console.log các thông tin đó
+
 Chú ý: 
 1. Sử dụng onChange = {this.handleChangeName} thì khi viết phương thức handleChangeName chỉ được viết theo arrow function:
 const handleChangeName = (e) => {
@@ -11,6 +14,10 @@ const handleChangeName = (e) => {
 
 4. Tham số truyền vào có thể là tên bất kì, nhưng để lấy giá trị hiện tại thẻ input thì cần câu lệnh 
 <tham số>.target.value
+
+5. Khi làm việc với form thì cần dùng event.preventDefault() để ngăn chặn reload (nếu ko có thì khi console.log, ngay lập tức trình duyệt reload lại); 
+
+6. Có 2 cách sử dụng events như button Submit1 và Submit2 (đều như nhau), nhưng nếu Submit2 để ngoài form thì ko cần dùng even.preventDefault(), và không cần truyền vào event: onClick = {()=>this.handleClick2()}
 
 */
 
@@ -40,6 +47,16 @@ class MyComponent extends React.Component {
     this.setState({
       framework: event.target.value,
     });
+  };
+
+  handleClick1 = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
+
+  handleClick2 = (event) => {
+    event.preventDefault();
+    console.log(this.state);
   };
 
   render() {
@@ -77,6 +94,12 @@ class MyComponent extends React.Component {
             value={this.state.address}
             onChange={(a) => this.setState({ address: a.target.value })}
           />
+          <br />
+          <button onClick={this.handleClick1}>Submit 1</button>
+          <br />
+          <button onClick={(event) => this.handleClick2(event)}>
+            Submit 2
+          </button>
         </form>
       </>
     );
