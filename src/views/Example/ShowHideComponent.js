@@ -11,8 +11,12 @@ export default class ShowHideComponent extends Component {
     });
   };
 
+  handleDelete = (job) => {
+    this.props.deleteJob(job);
+  };
+
   render() {
-    const { arrayJob } = this.props;
+    const { arrayJob } = this.props; //arrayJob = this.props.arrayJob
     return (
       <>
         {this.state.isShowHide === false ? (
@@ -24,7 +28,10 @@ export default class ShowHideComponent extends Component {
             {arrayJob.map((item) => {
               return (
                 <div key={item.jobKey}>
-                  {item.jobTitle} - {item.jobSalary}
+                  {item.jobTitle} - {item.jobSalary} <></>
+                  <button onClick={() => this.handleDelete(item)}>
+                    Delete
+                  </button>
                 </div>
               );
             })}

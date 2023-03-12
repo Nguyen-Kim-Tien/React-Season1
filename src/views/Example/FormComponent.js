@@ -2,34 +2,34 @@ import React, { Component } from "react";
 
 export default class FormComponent extends Component {
   state = {
-    job: "",
-    salary: "",
+    jobTitle: "",
+    jobSalary: "",
   };
 
   handleChangeJob = (event) => {
     this.setState({
-      job: event.target.value,
+      jobTitle: event.target.value,
     });
   };
 
   handleChangeSalary = (event) => {
-    this.setState({ salary: event.target.value });
+    this.setState({ jobSalary: event.target.value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.job || !this.state.salary) {
+    if (!this.state.jobTitle || !this.state.jobSalary) {
       alert("Thiếu dữ liệu submit !!!");
       return;
     }
-    this.props.addNew({
+    this.props.addNewJob({
       jobKey: Math.floor(Math.random() * 100),
-      jobTitle: this.state.job,
-      jobSalary: this.state.salary,
+      jobTitle: this.state.jobTitle,
+      jobSalary: this.state.jobSalary,
     });
     this.setState({
-      job: "",
-      salary: "",
+      jobTitle: "",
+      jobSalary: "",
     });
   };
   render() {
@@ -40,7 +40,7 @@ export default class FormComponent extends Component {
           <br />
           <input
             type="text"
-            value={this.state.job}
+            value={this.state.jobTitle}
             onChange={(e) => this.handleChangeJob(e)}
           />
           <br />
@@ -48,7 +48,7 @@ export default class FormComponent extends Component {
           <br />
           <input
             type="text"
-            value={this.state.salary}
+            value={this.state.jobSalary}
             onChange={(e) => this.handleChangeSalary(e)}
           />
           <br />
