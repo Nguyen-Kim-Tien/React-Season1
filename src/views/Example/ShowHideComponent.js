@@ -1,3 +1,11 @@
+/*
+1. Chú ý:         <button onClick={() => this.handleDeleteJob(item)}>
+                    Delete
+                  </button>
+    thì phải truyền vào item
+
+*/
+
 import React, { Component } from "react";
 
 export default class ShowHideComponent extends Component {
@@ -5,37 +13,46 @@ export default class ShowHideComponent extends Component {
     isShowHide: false,
   };
 
-  handleShowHide = () => {
+  handleClick = () => {
     this.setState({
       isShowHide: !this.state.isShowHide,
     });
   };
-
-  handleDelete = (job) => {
+  handleDeleteJob = (job) => {
     this.props.deleteJob(job);
   };
-
   render() {
-    const { arrayJob } = this.props; //arrayJob = this.props.arrayJob
     return (
       <>
         {this.state.isShowHide === false ? (
           <>
-            <button onClick={() => this.handleShowHide()}>Show</button>
+            <button
+              onClick={() => {
+                this.handleClick();
+              }}
+            >
+              Show
+            </button>
           </>
         ) : (
           <>
-            {arrayJob.map((item) => {
+            {this.props.arrJob.map((item) => {
               return (
-                <div key={item.jobKey}>
-                  {item.jobTitle} - {item.jobSalary} <></>
-                  <button onClick={() => this.handleDelete(item)}>
+                <div key={item.id}>
+                  {item.jobName} - {item.salary} <></>{" "}
+                  <button onClick={() => this.handleDeleteJob(item)}>
                     Delete
                   </button>
                 </div>
               );
             })}
-            <button onClick={() => this.handleShowHide()}>Hide</button>
+            <button
+              onClick={() => {
+                this.handleClick();
+              }}
+            >
+              Hide
+            </button>
           </>
         )}
       </>

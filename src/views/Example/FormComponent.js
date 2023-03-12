@@ -1,60 +1,58 @@
+/*
+1. Kiểm tra thiếu dữ liệu phải nằm sau e.preventDefault()
+2. Trong thẻ input phải có value = {this.state.name} hoặc ... để khi submit xong thì khi ta setState cho name,salary = '' nó mới cập nhật là rỗng trong thẻ input
+3. Chú ý liên quan đến id
+*/
+
 import React, { Component } from "react";
 
 export default class FormComponent extends Component {
   state = {
-    jobTitle: "",
-    jobSalary: "",
+    jobName: "",
+    salary: "",
+  };
+  handleChangeName = (event) => {
+    this.setState({ jobName: event.target.value });
   };
 
-  handleChangeJob = (event) => {
-    this.setState({
-      jobTitle: event.target.value,
-    });
-  };
-
-  handleChangeSalary = (event) => {
-    this.setState({ jobSalary: event.target.value });
+  handleChangeSalary = (e) => {
+    this.setState({ salary: e.target.value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.jobTitle || !this.state.jobSalary) {
-      alert("Thiếu dữ liệu submit !!!");
+    if (!this.state.jobName || !this.state.salary) {
+      alert("Thiếu dữ liệu !!!");
       return;
     }
     this.props.addNewJob({
-      jobKey: Math.floor(Math.random() * 100),
-      jobTitle: this.state.jobTitle,
-      jobSalary: this.state.jobSalary,
+      id: Math.floor(Math.random() * 100),
+      jobName: this.state.jobName,
+      salary: this.state.salary,
     });
-    this.setState({
-      jobTitle: "",
-      jobSalary: "",
-    });
+    this.setState({ jobName: "", salary: "" });
   };
   render() {
     return (
       <>
         <form>
-          <label>Job's Title: </label>
+          <label>JobName: {this.state.jobName}</label>
           <br />
           <input
             type="text"
-            value={this.state.jobTitle}
-            onChange={(e) => this.handleChangeJob(e)}
+            value={this.state.jobName}
+            onChange={(e) => this.handleChangeName(e)}
           />
           <br />
-          <label>Salary: </label>
+          <label>Salary: {this.state.salary}</label>
           <br />
           <input
             type="text"
-            value={this.state.jobSalary}
+            value={this.state.salary}
             onChange={(e) => this.handleChangeSalary(e)}
           />
           <br />
-          <div>
-            <button onClick={(e) => this.handleSubmit(e)}>Submit</button>
-          </div>
+          <button onClick={(e) => this.handleSubmit(e)}>Submit</button>
         </form>
       </>
     );

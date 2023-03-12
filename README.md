@@ -1,2 +1,5 @@
 1. STATES : aa81b14a841765d918b993f0abafce4b81a3fac4
 2. DOM EVENTS: 14afd6f80beb6e83b8ce188b54c5772ca0753747
+3. PROPS: 14afd6f80beb6e83b8ce188b54c5772ca0753747
+4. Conditinal SHow/Hide: 09a3f01ce8cd11855b49eedeceef3b47186d23e9
+5. Revise 1,2,3,4:
